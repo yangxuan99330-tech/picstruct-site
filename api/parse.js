@@ -668,16 +668,7 @@ async function parseWithOpenAIResponses({ providerConfig, mode, output, detail, 
   const text = extractOutputText(raw);
   const parsed = JSON.parse(text);
 
-  return {
-    previewType: parsed.previewType,
-    code: parsed.code,
-    mermaid: parsed.mermaid,
-    csv: parsed.csv,
-    dataJson: parsed.dataJson,
-    metrics: parsed.metrics,
-    summary: parsed.summary,
-    warnings: parsed.warnings
-  };
+  return normalizeParsedResult(parsed, output);
 }
 
 async function parseWithChatCompletions({ providerConfig, mode, output, detail, preset, instructions, image }) {
@@ -728,16 +719,7 @@ async function parseWithChatCompletions({ providerConfig, mode, output, detail, 
   const text = extractChatText(raw);
   const parsed = JSON.parse(extractJsonObject(text));
 
-  return {
-    previewType: parsed.previewType,
-    code: parsed.code,
-    mermaid: parsed.mermaid,
-    csv: parsed.csv,
-    dataJson: parsed.dataJson,
-    metrics: parsed.metrics,
-    summary: parsed.summary,
-    warnings: parsed.warnings
-  };
+  return normalizeParsedResult(parsed, output);
 }
 
 function systemPrompt() {
@@ -778,6 +760,7 @@ function buildPrompt({ mode, output, detail, preset, instructions }) {
       "For Markdown, include a short summary and a fenced CSV block.",
       "For JSON, return a formatted JSON object in the code field.",
       "Always include csv with the best table representation and dataJson as a serialized JSON object.",
+      "Do not wrap raw code, csv, mermaid, or dataJson values in Markdown fences unless the selected output is Markdown.",
       "Return a one-sentence summary and 1-4 warnings or review notes.",
       `Preset: ${preset}. ${presetGuidance[preset]}`,
       `Detail level: ${detail}.`,
@@ -792,12 +775,51 @@ function buildPrompt({ mode, output, detail, preset, instructions }) {
     "For Markdown, include a short summary and a fenced Mermaid block.",
     "For JSON, return a formatted JSON object in the code field.",
     "Always include mermaid with the best diagram representation and dataJson as a serialized JSON object.",
+    "Do not wrap raw code, mermaid, csv, or dataJson values in Markdown fences unless the selected output is Markdown.",
     "Prefer flowchart TD unless the image clearly uses a left-to-right layout.",
     "Return a one-sentence summary and 1-4 warnings or review notes.",
     `Preset: ${preset}. ${presetGuidance[preset]}`,
     `Detail level: ${detail}.`,
     userInstruction
   ].join("\n");
+}
+
+function normalizeParsedResult(parsed, output) {
+  const selectedOutput = String(output || "");
+  return {
+    previewType: parsed.previewType === "table" ? "table" : "mermaid",
+    code: cleanGeneratedCode(parsed.code, selectedOutput),
+    mermaid: cleanGeneratedCode(parsed.mermaid, "mermaid"),
+    csv: cleanGeneratedCode(parsed.csv, "csv"),
+    dataJson: cleanGeneratedCode(parsed.dataJson, "json"),
+    metrics: parsed.metrics,
+    summary: String(parsed.summary || "").trim(),
+    warnings: Array.isArray(parsed.warnings) ? parsed.warnings.map((warning) => String(warning).trim()).filter(Boolean) : []
+  };
+}
+
+function cleanGeneratedCode(value, format) {
+  let text = String(value || "").trim();
+  if (!text || format === "markdown") return text;
+
+  const fenced = text.match(/```(?:\s*[\w-]+)?\s*\r?\n([\s\S]*?)```/);
+  if (fenced?.[1]) {
+    text = fenced[1].trim();
+  }
+
+  if (format === "mermaid") {
+    text = text.replace(/^\s*mermaid\s*\r?\n/i, "").trim();
+  }
+
+  if (format === "csv") {
+    text = text.replace(/^\s*csv\s*\r?\n/i, "").trim();
+  }
+
+  if (format === "json") {
+    text = text.replace(/^\s*json\s*\r?\n/i, "").trim();
+  }
+
+  return text;
 }
 
 function responseSchema() {
