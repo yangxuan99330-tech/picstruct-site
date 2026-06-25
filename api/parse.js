@@ -193,7 +193,7 @@ function getPlanConfig() {
       id: "free",
       label: "Free",
       window: "day",
-      limit: envNumber("FREE_DAILY_PARSE_LIMIT", envNumber("DAILY_PARSE_LIMIT", DEFAULT_FREE_DAILY_LIMIT))
+      limit: envNumber("FREE_DAILY_PARSE_LIMIT", DEFAULT_FREE_DAILY_LIMIT)
     },
     starter: {
       id: "starter",
