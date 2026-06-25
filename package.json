@@ -1,0 +1,11 @@
+{
+  "name": "picstruct-site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PicStruct turns charts and diagrams into editable Mermaid, CSV, Markdown, and JSON.",
+  "scripts": {
+    "check": "node --check script.js && node --check api/parse.js && node --check api/health.js && node --check dev-server.js",
+    "dev": "node dev-server.js",
+    "serve": "node dev-server.js"
+  }
+}

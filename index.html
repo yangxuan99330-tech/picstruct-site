@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PicStruct - Convert charts and diagrams into editable data</title>
+    <meta name="description" content="PicStruct turns flowcharts, architecture diagrams, screenshots, and chart images into Mermaid, CSV, JSON, and clean documentation-ready text.">
+    <meta name="theme-color" content="#f7f4ee">
+    <link rel="canonical" href="https://picstruct.com/">
+    <link rel="stylesheet" href="styles.css">
+    <script src="config.js"></script>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: "loose",
+        theme: "base",
+        themeVariables: {
+          background: "#ffffff",
+          primaryColor: "#eaf3f2",
+          primaryTextColor: "#17201f",
+          primaryBorderColor: "#7fb7ae",
+          lineColor: "#405a56",
+          secondaryColor: "#fff0cf",
+          tertiaryColor: "#f3edf7",
+          fontFamily: "Inter, ui-sans-serif, system-ui"
+        }
+      });
+      window.picstructMermaid = mermaid;
+      window.dispatchEvent(new Event("picstruct:mermaid-ready"));
+    </script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="PicStruct home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" role="img">
+            <rect x="5" y="5" width="9" height="9" rx="2"></rect>
+            <rect x="18" y="5" width="9" height="9" rx="2"></rect>
+            <rect x="11" y="19" width="10" height="8" rx="2"></rect>
+            <path d="M14 10h4M23 14v5M16 19v-5"></path>
+          </svg>
+        </span>
+        <span>PicStruct</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#workspace">Tool</a>
+        <a href="#formats">Formats</a>
+        <a href="#pricing">Pricing</a>
+      </nav>
+      <a class="header-action" href="#workspace">Open app</a>
+    </header>
+
+    <main>
+      <section class="workspace-shell" id="workspace" aria-labelledby="workspace-title">
+        <div class="workspace-heading">
+          <div>
+            <p class="eyebrow">PicStruct.com</p>
+            <h1 id="workspace-title">Turn visual files into editable structure.</h1>
+          </div>
+          <div class="status-strip" id="parserStatus" aria-label="Parser status">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span id="parserStatusText">Demo parser active</span>
+          </div>
+          <div class="quota-strip" id="quotaStrip" aria-label="Free usage quota">
+            <span id="quotaText">Free conversions: 0 / 3 today</span>
+          </div>
+        </div>
+
+        <div class="app-grid">
+          <section class="input-panel" aria-label="Visual input">
+            <div class="panel-head">
+              <div>
+                <h2>Input</h2>
+                <p>Drop a chart, flowchart, architecture screenshot, or whiteboard capture.</p>
+              </div>
+              <div class="mode-toggle" role="tablist" aria-label="Conversion mode">
+                <button class="mode-button is-active" type="button" role="tab" aria-selected="true" data-mode="diagram">
+                  <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M6 5h5v5H6zM13 14h5v5h-5zM13 5h5v5h-5zM8.5 10v3.5H13M15.5 10v4"></path></svg>
+                  </span>
+                  Diagram
+                </button>
+                <button class="mode-button" type="button" role="tab" aria-selected="false" data-mode="chart">
+                  <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M5 19V5M5 19h15M9 16v-5M13 16V8M17 16v-8"></path></svg>
+                  </span>
+                  Chart
+                </button>
+              </div>
+            </div>
+
+            <label class="dropzone" id="dropzone">
+              <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml">
+              <span class="dropzone-art" aria-hidden="true">
+                <svg viewBox="0 0 160 112" role="img">
+                  <rect x="12" y="14" width="136" height="84" rx="10"></rect>
+                  <path d="M38 75l22-22 18 16 18-23 27 29"></path>
+                  <circle cx="55" cy="38" r="8"></circle>
+                </svg>
+              </span>
+              <span class="dropzone-title">Choose or drop an image</span>
+              <span class="dropzone-meta">PNG, JPG, WEBP, or SVG · max 10 MB</span>
+            </label>
+            <div class="file-meta" id="fileMeta">Sample loaded: sample-flow.svg</div>
+
+            <div class="url-row" aria-label="Image URL input">
+              <input id="imageUrlInput" type="url" placeholder="Paste an image URL">
+              <button id="loadUrlButton" type="button">Load URL</button>
+            </div>
+
+            <div class="sample-row" aria-label="Sample images">
+              <button class="sample-button is-selected" type="button" data-sample="flow">
+                <img src="assets/sample-flow.svg" alt="Flowchart sample">
+                <span>Flowchart</span>
+              </button>
+              <button class="sample-button" type="button" data-sample="chart">
+                <img src="assets/sample-chart.svg" alt="Chart sample">
+                <span>Chart</span>
+              </button>
+            </div>
+
+            <div class="preview-frame" aria-label="Selected image preview">
+              <img id="imagePreview" src="assets/sample-flow.svg" alt="Selected visual preview">
+            </div>
+
+            <div class="settings-grid" aria-label="Output settings">
+              <label>
+                <span>Output</span>
+                <select id="outputSelect">
+                  <option value="mermaid">Mermaid diagram</option>
+                  <option value="markdown">Markdown brief</option>
+                  <option value="json">Structured JSON</option>
+                </select>
+              </label>
+              <label>
+                <span>Detail</span>
+                <select id="detailSelect">
+                  <option value="balanced">Balanced</option>
+                  <option value="compact">Compact</option>
+                  <option value="audit">Audit-ready</option>
+                </select>
+              </label>
+              <label>
+                <span>Preset</span>
+                <select id="presetSelect">
+                  <option value="editable">Editable source</option>
+                  <option value="docs">Documentation-ready</option>
+                  <option value="data">Data-first</option>
+                  <option value="accessibility">Accessibility text</option>
+                </select>
+              </label>
+              <label>
+                <span>Notes</span>
+                <input id="instructionInput" type="text" maxlength="180" placeholder="Optional: focus on labels, values, or branches">
+              </label>
+            </div>
+
+            <button class="primary-action" id="generateButton" type="button">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+              </span>
+              Generate structure
+            </button>
+
+            <section class="recent-panel" aria-labelledby="recent-title">
+              <div class="recent-head">
+                <h3 id="recent-title">Recent outputs</h3>
+                <button class="text-button" id="clearHistoryButton" type="button">Clear</button>
+              </div>
+              <div class="recent-list" id="recentList">
+                <p>No saved outputs yet.</p>
+              </div>
+            </section>
+          </section>
+
+          <section class="output-panel" aria-label="Conversion result">
+            <div class="panel-head">
+              <div>
+                <h2>Result</h2>
+                <p id="resultCaption">Mermaid output with a live diagram preview.</p>
+              </div>
+              <div class="action-row">
+                <button class="icon-button" id="copyButton" type="button" aria-label="Copy result">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8h10v12H8zM6 16H4V4h12v2"></path></svg>
+                </button>
+                <button class="icon-button" id="downloadButton" type="button" aria-label="Download result">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v10M8 10l4 4 4-4M5 20h14"></path></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="result-tabs" role="tablist" aria-label="Result view">
+              <button class="result-tab is-active" type="button" data-view="preview">Preview</button>
+              <button class="result-tab" type="button" data-view="code">Code</button>
+              <button class="result-tab" type="button" data-view="data">Data</button>
+            </div>
+
+            <div class="result-stage">
+              <div class="result-view is-active" id="previewView" data-view-panel="preview">
+                <div class="diagram-preview" id="diagramPreview"></div>
+                <div class="table-preview" id="tablePreview" hidden></div>
+              </div>
+              <div class="result-view" id="codeView" data-view-panel="code">
+                <textarea class="code-editor" id="codeEditor" spellcheck="false" aria-label="Editable output code"></textarea>
+              </div>
+              <div class="result-view" id="dataView" data-view-panel="data">
+                <pre><code id="dataOutput"></code></pre>
+              </div>
+            </div>
+
+            <div class="quality-bar" aria-label="Extraction checks">
+              <div>
+                <span class="quality-label">Nodes</span>
+                <strong id="nodesMetric">6</strong>
+              </div>
+              <div>
+                <span class="quality-label">Links</span>
+                <strong id="linksMetric">7</strong>
+              </div>
+              <div>
+                <span class="quality-label">Confidence</span>
+                <strong id="confidenceMetric">Demo</strong>
+              </div>
+            </div>
+            <section class="review-panel" aria-labelledby="review-title">
+              <div>
+                <span class="quality-label" id="review-title">Review</span>
+                <p id="summaryText">Demo output is ready for editing. Review labels before using it in production docs.</p>
+              </div>
+              <ul id="warningList">
+                <li>Demo data is illustrative and not extracted from the selected image.</li>
+              </ul>
+            </section>
+            <section class="upgrade-panel" id="upgradePanel" hidden aria-labelledby="upgrade-title">
+              <div>
+                <span class="quality-label" id="upgrade-title">Upgrade</span>
+                <h3>Keep converting visual files without waiting.</h3>
+                <p>Free users get 3 conversions per day. Pro adds larger files, more monthly conversions, batch upload, and clean exports.</p>
+              </div>
+              <div class="upgrade-actions">
+                <button type="button" data-checkout-plan="starter">Upgrade Starter</button>
+                <button type="button" id="dismissUpgradeButton">Not now</button>
+              </div>
+            </section>
+          </section>
+        </div>
+      </section>
+
+      <section class="format-band" id="formats" aria-labelledby="formats-title">
+        <div class="section-inner">
+          <div class="section-copy">
+            <p class="eyebrow">Output formats</p>
+            <h2 id="formats-title">Built around files people already use.</h2>
+          </div>
+          <div class="format-grid">
+            <article class="format-card">
+              <span class="format-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M6 5h5v5H6zM13 14h5v5h-5zM11 7h2M15.5 10v4M10 16h3"></path></svg>
+              </span>
+              <h3>Mermaid</h3>
+              <p>Flowcharts, architecture diagrams, process maps, and whiteboard sketches.</p>
+            </article>
+            <article class="format-card">
+              <span class="format-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M5 19h14M6 16l4-5 4 2 4-7M6 6h.01M6 10h.01M6 14h.01"></path></svg>
+              </span>
+              <h3>CSV</h3>
+              <p>Chart screenshots, report images, plotted values, and quick spreadsheet exports.</p>
+            </article>
+            <article class="format-card">
+              <span class="format-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M7 4h10l3 3v13H7zM10 10h7M10 14h7M10 18h4"></path></svg>
+              </span>
+              <h3>Markdown</h3>
+              <p>Clean summaries, alt text, implementation notes, and documentation snippets.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="seo-band" aria-labelledby="seo-title">
+        <div class="section-inner seo-layout">
+          <div>
+            <p class="eyebrow">Search pages</p>
+            <h2 id="seo-title">Focused pages for high-intent searches.</h2>
+          </div>
+          <div class="link-list">
+            <a href="pages/image-to-mermaid.html">Image to Mermaid</a>
+            <a href="pages/flowchart-to-mermaid.html">Flowchart to Mermaid</a>
+            <a href="pages/chart-to-csv.html">Chart Image to CSV</a>
+            <a href="pages/diagram-to-markdown.html">Diagram to Markdown</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="pricing-band" id="pricing" aria-labelledby="pricing-title">
+        <div class="section-inner pricing-layout">
+          <div class="section-copy">
+            <p class="eyebrow">Early pricing shape</p>
+            <h2 id="pricing-title">Free enough to try, paid when it becomes a workflow.</h2>
+          </div>
+          <div class="price-table" aria-label="Pricing plan draft">
+            <div class="price-row">
+              <span>Free</span>
+              <strong>3 conversions / day</strong>
+              <span>Single images, local history, demo-friendly limits</span>
+              <button type="button" data-checkout-plan="free">Current</button>
+            </div>
+            <div class="price-row">
+              <span>Starter</span>
+              <strong>$7 / month</strong>
+              <span>100 conversions, larger files, clean exports</span>
+              <button type="button" data-checkout-plan="starter">Start</button>
+            </div>
+            <div class="price-row">
+              <span>Pro</span>
+              <strong>$15 / month</strong>
+              <span>500 conversions, batch upload, higher accuracy</span>
+              <button type="button" data-checkout-plan="pro">Start</button>
+            </div>
+            <form class="access-panel" id="accessForm">
+              <div>
+                <span>Already paid?</span>
+                <p>Paste your access code to use paid monthly limits before accounts are added.</p>
+              </div>
+              <div class="access-controls">
+                <input id="accessCodeInput" type="password" autocomplete="off" spellcheck="false" placeholder="Access code">
+                <button type="submit">Save</button>
+                <button type="button" id="clearAccessCodeButton">Clear</button>
+              </div>
+              <p class="access-status" id="accessStatus">Free plan active. Paid users can paste an access code here.</p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>PicStruct</span>
+      <nav aria-label="Footer">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="script.js" defer></script>
+  </body>
+</html>

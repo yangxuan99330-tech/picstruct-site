@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Checkout - PicStruct</title>
+    <meta name="description" content="Choose a PicStruct payment method for card, Paddle, crypto, WeChat Pay, Alipay, or manual payment.">
+    <link rel="canonical" href="https://picstruct.com/checkout.html">
+    <link rel="stylesheet" href="styles.css">
+    <script src="config.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="PicStruct home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="5" y="5" width="9" height="9" rx="2"></rect><rect x="18" y="5" width="9" height="9" rx="2"></rect><rect x="11" y="19" width="10" height="8" rx="2"></rect><path d="M14 10h4M23 14v5M16 19v-5"></path></svg></span>
+        <span>PicStruct</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html#workspace">Tool</a>
+        <a href="index.html#formats">Formats</a>
+        <a href="index.html#pricing">Pricing</a>
+      </nav>
+      <a class="header-action" href="index.html#pricing">Pricing</a>
+    </header>
+
+    <main class="plain-page checkout-page">
+      <p class="eyebrow">Checkout</p>
+      <h1 id="checkoutTitle">Choose payment method.</h1>
+      <p id="checkoutPlanText">Select a payment method for this plan.</p>
+
+      <div class="checkout-summary" aria-label="Selected plan">
+        <div>
+          <span>Selected plan</span>
+          <strong id="planName">Starter</strong>
+        </div>
+        <div>
+          <span>Price</span>
+          <strong id="planPrice">$7 / month</strong>
+        </div>
+        <div>
+          <span>Access</span>
+          <strong id="planLimit">100 conversions</strong>
+        </div>
+      </div>
+
+      <section aria-labelledby="payment-method-title">
+        <h2 id="payment-method-title">Payment methods</h2>
+        <div class="payment-method-grid" id="paymentMethodGrid"></div>
+      </section>
+
+      <section class="checkout-note" aria-labelledby="checkout-note-title">
+        <h2 id="checkout-note-title">After payment</h2>
+        <p>For the first paid test, send buyers a matching access code after payment. They can paste it on the pricing section to unlock the paid API limit.</p>
+        <p>Only public checkout links belong in <code>config.js</code>. Do not put secret keys, payout details, tax IDs, identity documents, or private payment credentials in this project.</p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>PicStruct</span>
+      <nav aria-label="Footer"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="contact.html">Contact</a></nav>
+    </footer>
+
+    <script>
+      const config = window.PICSTRUCT_CONFIG || {};
+      const params = new URLSearchParams(location.search);
+      const plan = normalizePlan(params.get("plan"));
+      const planMeta = {
+        starter: { label: "Starter", price: "$7 / month", limit: "100 conversions" },
+        pro: { label: "Pro", price: "$15 / month", limit: "500 conversions" },
+        credits: { label: "Credit pack", price: "One-time", limit: "Extra conversions" }
+      };
+      const paymentMethods = [
+        {
+          id: "card",
+          title: "Card, Apple Pay, Google Pay",
+          provider: "Stripe Payment Links",
+          bestFor: "Default international checkout for most buyers."
+        },
+        {
+          id: "paddle",
+          title: "Paddle checkout",
+          provider: "Paddle",
+          bestFor: "SaaS checkout with merchant-of-record handling."
+        },
+        {
+          id: "crypto",
+          title: "Crypto",
+          provider: "Coinbase Commerce, NOWPayments, or manual invoice",
+          bestFor: "USDT, USDC, BTC, ETH, and buyer-requested crypto payments."
+        },
+        {
+          id: "wechat",
+          title: "WeChat Pay",
+          provider: "Stripe, Adyen, local merchant account, or manual QR",
+          bestFor: "Mainland China users and Chinese-speaking buyers."
+        },
+        {
+          id: "alipay",
+          title: "Alipay",
+          provider: "Stripe, Adyen, local merchant account, or manual QR",
+          bestFor: "Mainland China users who prefer Alipay."
+        },
+        {
+          id: "manual",
+          title: "Manual payment",
+          provider: "Email, invoice, bank transfer, or QR code",
+          bestFor: "Early users when automated checkout is not configured."
+        }
+      ];
+
+      renderCheckout();
+
+      function renderCheckout() {
+        const meta = planMeta[plan];
+        document.getElementById("checkoutTitle").textContent = `Choose payment for ${meta.label}.`;
+        document.getElementById("checkoutPlanText").textContent = `${meta.label} is ${meta.price}. Choose the payment rail that works best for you.`;
+        document.getElementById("planName").textContent = meta.label;
+        document.getElementById("planPrice").textContent = meta.price;
+        document.getElementById("planLimit").textContent = meta.limit;
+
+        const grid = document.getElementById("paymentMethodGrid");
+        grid.innerHTML = "";
+        const links = getPlanPaymentLinks(plan);
+
+        for (const method of paymentMethods) {
+          const url = links[method.id] || "";
+          const article = document.createElement("article");
+          article.className = "payment-method-card";
+
+          const heading = document.createElement("h3");
+          heading.textContent = method.title;
+          const provider = document.createElement("p");
+          provider.textContent = method.provider;
+          const bestFor = document.createElement("p");
+          bestFor.textContent = method.bestFor;
+
+          const action = document.createElement(url ? "a" : "button");
+          action.className = "payment-method-action";
+          action.textContent = url ? "Continue" : "Setup required";
+
+          if (url) {
+            action.href = url;
+          } else {
+            action.type = "button";
+            action.disabled = true;
+          }
+
+          article.append(heading, provider, bestFor, action);
+          grid.appendChild(article);
+        }
+      }
+
+      function getPlanPaymentLinks(selectedPlan) {
+        const structured = config.paymentLinks?.[selectedPlan] || {};
+        const legacy = {
+          starter: config.starterCheckoutUrl,
+          pro: config.proCheckoutUrl,
+          credits: config.creditPackCheckoutUrl
+        };
+
+        return {
+          card: structured.card || legacy[selectedPlan] || "",
+          paddle: structured.paddle || "",
+          crypto: structured.crypto || "",
+          wechat: structured.wechat || "",
+          alipay: structured.alipay || "",
+          manual: structured.manual || makeMailto(selectedPlan)
+        };
+      }
+
+      function makeMailto(selectedPlan) {
+        const email = String(config.contactEmail || "").trim();
+        if (!email) return "";
+        const label = planMeta[selectedPlan]?.label || "Selected";
+        const subject = encodeURIComponent(`PicStruct ${label} payment`);
+        const body = encodeURIComponent(`Hi, I want to pay for PicStruct ${label}. Please send payment instructions.`);
+        return `mailto:${email}?subject=${subject}&body=${body}`;
+      }
+
+      function normalizePlan(value) {
+        return ["starter", "pro", "credits"].includes(value) ? value : "starter";
+      }
+    </script>
+  </body>
+</html>
