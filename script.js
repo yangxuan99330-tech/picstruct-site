@@ -673,18 +673,27 @@ async function currentPreviewAsDataUrl() {
 
 function normalizeApiResult(payload) {
   const fallback = makeDemoResult();
+  const output = payload.output || els.outputSelect.value;
+  const previewType = payload.previewType === "table" ? "table" : "mermaid";
+  const rawCode = String(payload.code || fallback.code || "");
+  const code = cleanGeneratedCode(rawCode, output);
+  const mermaid = cleanGeneratedCode(
+    payload.mermaid || (previewType === "mermaid" ? code : fallback.mermaid || ""),
+    "mermaid"
+  );
+  const csv = cleanGeneratedCode(
+    payload.csv || (previewType === "table" ? code : fallback.csv || ""),
+    "csv"
+  );
+  const dataJson = cleanGeneratedCode(payload.dataJson || "", "json");
   const dataObject = typeof payload.data === "object" && payload.data
     ? payload.data
-    : safeJsonParse(payload.dataJson, {});
+    : safeJsonParse(dataJson, {});
   const dataText = JSON.stringify(dataObject, null, 2);
-  const previewType = payload.previewType === "table" ? "table" : "mermaid";
-  const code = String(payload.code || fallback.code || "");
-  const mermaid = String(payload.mermaid || (previewType === "mermaid" ? code : fallback.mermaid || ""));
-  const csv = String(payload.csv || (previewType === "table" ? code : fallback.csv || ""));
 
   return {
     mode: payload.mode || state.mode,
-    output: payload.output || els.outputSelect.value,
+    output,
     detail: payload.detail || els.detailSelect.value,
     preset: payload.preset || els.presetSelect.value,
     instructions: payload.instructions || els.instructionInput.value.trim(),
@@ -704,6 +713,30 @@ function normalizeApiResult(payload) {
     plan: payload.plan || null,
     cache: payload.cache || { hit: false }
   };
+}
+
+function cleanGeneratedCode(value, format) {
+  let text = String(value || "").trim();
+  if (!text || format === "markdown") return text;
+
+  const fenced = text.match(/```(?:\s*[\w-]+)?\s*\r?\n([\s\S]*?)```/);
+  if (fenced?.[1]) {
+    text = fenced[1].trim();
+  }
+
+  if (format === "mermaid") {
+    text = text.replace(/^\s*mermaid\s*\r?\n/i, "").trim();
+  }
+
+  if (format === "csv") {
+    text = text.replace(/^\s*csv\s*\r?\n/i, "").trim();
+  }
+
+  if (format === "json") {
+    text = text.replace(/^\s*json\s*\r?\n/i, "").trim();
+  }
+
+  return text;
 }
 
 async function safeResponseJson(response) {
