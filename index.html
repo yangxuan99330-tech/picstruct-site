@@ -14,6 +14,37 @@
     <link rel="stylesheet" href="styles.css">
     <script src="config.js"></script>
     <script src="analytics.js" defer></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "PicStruct",
+        "url": "https://www.picstruct.com/",
+        "applicationCategory": "ProductivityApplication",
+        "operatingSystem": "Web",
+        "description": "PicStruct converts chart and diagram images into editable Mermaid, CSV, Markdown, and JSON.",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Free",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          {
+            "@type": "Offer",
+            "name": "Starter",
+            "price": "7",
+            "priceCurrency": "USD"
+          },
+          {
+            "@type": "Offer",
+            "name": "Pro",
+            "price": "15",
+            "priceCurrency": "USD"
+          }
+        ]
+      }
+    </script>
     <script type="module">
       import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
       mermaid.initialize({
@@ -296,6 +327,10 @@
             <a href="pages/flowchart-to-mermaid.html">Flowchart to Mermaid</a>
             <a href="pages/chart-to-csv.html">Chart Image to CSV</a>
             <a href="pages/diagram-to-markdown.html">Diagram to Markdown</a>
+            <a href="pages/screenshot-to-mermaid.html">Screenshot to Mermaid</a>
+            <a href="pages/architecture-diagram-to-mermaid.html">Architecture Diagram to Mermaid</a>
+            <a href="pages/whiteboard-to-mermaid.html">Whiteboard to Mermaid</a>
+            <a href="pages/image-to-json.html">Image to JSON</a>
           </div>
         </div>
       </section>
