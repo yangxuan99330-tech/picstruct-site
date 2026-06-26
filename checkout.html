@@ -45,12 +45,13 @@
 
       <section aria-labelledby="payment-method-title">
         <h2 id="payment-method-title">Payment methods</h2>
+        <p class="checkout-helper">Automated checkout links can be added later in <code>config.js</code>. Until then, use manual payment to request instructions and receive an access code.</p>
         <div class="payment-method-grid" id="paymentMethodGrid"></div>
       </section>
 
       <section class="checkout-note" aria-labelledby="checkout-note-title">
         <h2 id="checkout-note-title">After payment</h2>
-        <p>For the first paid test, send buyers a matching access code after payment. They can paste it on the pricing section to unlock the paid API limit.</p>
+        <p>For the first paid test, buyers receive a matching access code after payment. They can paste it on the pricing section to unlock the paid API limit.</p>
         <p>Only public checkout links belong in <code>config.js</code>. Do not put secret keys, payout details, tax IDs, identity documents, or private payment credentials in this project.</p>
       </section>
     </main>
@@ -136,7 +137,7 @@
 
           const action = document.createElement(url ? "a" : "button");
           action.className = "payment-method-action";
-          action.textContent = url ? "Continue" : "Setup required";
+          action.textContent = url ? (method.id === "manual" ? "Email for instructions" : "Continue") : "Setup required";
 
           if (url) {
             action.href = url;

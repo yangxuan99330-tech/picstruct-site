@@ -7,6 +7,10 @@
     <meta name="description" content="PicStruct turns flowcharts, architecture diagrams, screenshots, and chart images into Mermaid, CSV, JSON, and clean documentation-ready text.">
     <meta name="theme-color" content="#f7f4ee">
     <link rel="canonical" href="https://picstruct.com/">
+    <meta property="og:title" content="PicStruct - Visual files to editable structure">
+    <meta property="og:description" content="Convert chart and diagram images into Mermaid, CSV, Markdown, and JSON.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://picstruct.com/">
     <link rel="stylesheet" href="styles.css">
     <script src="config.js"></script>
     <script type="module">
@@ -46,6 +50,7 @@
       <nav class="nav-links" aria-label="Primary">
         <a href="#workspace">Tool</a>
         <a href="#formats">Formats</a>
+        <a href="#use-cases">Use cases</a>
         <a href="#pricing">Pricing</a>
       </nav>
       <a class="header-action" href="#workspace">Open app</a>
@@ -100,7 +105,7 @@
                 </svg>
               </span>
               <span class="dropzone-title">Choose or drop an image</span>
-              <span class="dropzone-meta">PNG, JPG, WEBP, or SVG · max 10 MB</span>
+              <span class="dropzone-meta">PNG, JPG, WEBP, or SVG - max 10 MB</span>
             </label>
             <div class="file-meta" id="fileMeta">Sample loaded: sample-flow.svg</div>
 
@@ -294,11 +299,66 @@
         </div>
       </section>
 
+      <section class="usecase-band" id="use-cases" aria-labelledby="usecase-title">
+        <div class="section-inner">
+          <div class="section-copy">
+            <p class="eyebrow">Use cases</p>
+            <h2 id="usecase-title">For people who need the structure behind a screenshot.</h2>
+          </div>
+          <div class="usecase-grid">
+            <article class="usecase-card">
+              <h3>Technical docs</h3>
+              <p>Turn architecture screenshots and process maps into Mermaid that can live in GitHub, Notion, docs, and tickets.</p>
+            </article>
+            <article class="usecase-card">
+              <h3>Reports and analytics</h3>
+              <p>Extract visible chart labels and table-like values into CSV, Markdown, or JSON for quick review.</p>
+            </article>
+            <article class="usecase-card">
+              <h3>Research and teardown</h3>
+              <p>Convert visual references into editable source before rebuilding, summarizing, or comparing workflows.</p>
+            </article>
+            <article class="usecase-card">
+              <h3>Accessibility and SEO</h3>
+              <p>Create structured image notes, alt-text drafts, and clean descriptions from complex visual files.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="workflow-band" aria-labelledby="workflow-title">
+        <div class="section-inner workflow-layout">
+          <div class="section-copy">
+            <p class="eyebrow">Workflow</p>
+            <h2 id="workflow-title">A small tool that fits before your final editor.</h2>
+            <p>PicStruct is built for the middle step: take a visual file, get editable source, then paste it into the place where your team already works.</p>
+          </div>
+          <div class="workflow-steps">
+            <article>
+              <span>01</span>
+              <h3>Upload or paste a URL</h3>
+              <p>Start from a diagram, chart, whiteboard capture, or product screenshot.</p>
+            </article>
+            <article>
+              <span>02</span>
+              <h3>Choose the output</h3>
+              <p>Generate Mermaid, CSV, Markdown, or JSON with a preset for docs, data, or accessibility.</p>
+            </article>
+            <article>
+              <span>03</span>
+              <h3>Review and export</h3>
+              <p>Edit the code, copy it, download it, or save it in your local recent-output history.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section class="pricing-band" id="pricing" aria-labelledby="pricing-title">
         <div class="section-inner pricing-layout">
           <div class="section-copy">
-            <p class="eyebrow">Early pricing shape</p>
-            <h2 id="pricing-title">Free enough to try, paid when it becomes a workflow.</h2>
+            <p class="eyebrow">Pricing</p>
+            <h2 id="pricing-title">Start free, pay when PicStruct saves real work.</h2>
+            <p>Paid plans are unlocked with access codes while accounts and automated billing are being added. This keeps the first version simple and keeps API usage controlled.</p>
           </div>
           <div class="price-table" aria-label="Pricing plan draft">
             <div class="price-row">
@@ -331,6 +391,33 @@
               </div>
               <p class="access-status" id="accessStatus">Free plan active. Paid users can paste an access code here.</p>
             </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-band" id="faq" aria-labelledby="faq-title">
+        <div class="section-inner faq-layout">
+          <div class="section-copy">
+            <p class="eyebrow">FAQ</p>
+            <h2 id="faq-title">Practical details before you rely on it.</h2>
+          </div>
+          <div class="faq-list">
+            <details open>
+              <summary>Does PicStruct store my images?</summary>
+              <p>The current site sends the selected image or image URL to the serverless parser so the AI model can process it. Do not upload sensitive files yet. A stronger retention policy and account controls should be added before enterprise use.</p>
+            </details>
+            <details>
+              <summary>Why is there a free limit?</summary>
+              <p>Every real conversion calls an AI vision model. The free limit keeps testing open while protecting API costs.</p>
+            </details>
+            <details>
+              <summary>How do paid access codes work?</summary>
+              <p>After payment, the buyer receives a code for Starter or Pro. The code is pasted into the pricing panel and sent with future conversion requests.</p>
+            </details>
+            <details>
+              <summary>Is the output always exact?</summary>
+              <p>No. PicStruct produces editable structure from visible content. Users should review labels, numeric values, branches, and confidence notes before publishing.</p>
+            </details>
           </div>
         </div>
       </section>
