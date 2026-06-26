@@ -29,5 +29,6 @@ window.PICSTRUCT_CONFIG = {
     }
   },
   contactEmail: "hello@picstruct.com",
+  gaMeasurementId: "",
   apiTimeoutMs: 75000
 };

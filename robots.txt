@@ -1,4 +1,4 @@
-User-agent: *
+﻿User-agent: *
 Allow: /
 
-Sitemap: https://picstruct.com/sitemap.xml
+Sitemap: https://www.picstruct.com/sitemap.xml
