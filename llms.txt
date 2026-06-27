@@ -1,0 +1,41 @@
+# PicStruct
+
+> PicStruct is a web tool that converts diagram, flowchart, architecture, whiteboard, and chart images into editable Mermaid, CSV, Markdown, and JSON.
+
+Canonical site: <https://www.picstruct.com/>
+
+PicStruct is useful when a visual file contains structure that should become editable text. It focuses on visible information: diagram nodes, arrows, labels, chart axes, legend names, categories, estimated chart values, summaries, and review notes.
+
+Primary outputs:
+- Mermaid diagram code
+- CSV table data
+- Markdown summaries and documentation notes
+- Structured JSON
+
+Primary users:
+- Technical writers and software teams rebuilding diagrams for docs
+- Product and operations teams turning process screenshots into editable flows
+- Analysts extracting visible chart data into spreadsheet-friendly rows
+- SEO and accessibility workers drafting structured image descriptions
+
+Important limitation: PicStruct creates editable drafts from visible image content. Users should review generated Mermaid, CSV, Markdown, and JSON before publishing or importing results.
+
+## Core Pages
+
+- [Home and tool](https://www.picstruct.com/): Upload or paste a visual file and convert it into editable structure.
+- [Image to Mermaid](https://www.picstruct.com/pages/image-to-mermaid.html): Convert diagram images into Mermaid code.
+- [Flowchart to Mermaid](https://www.picstruct.com/pages/flowchart-to-mermaid.html): Convert process and flowchart screenshots into Mermaid.
+- [Screenshot to Mermaid](https://www.picstruct.com/pages/screenshot-to-mermaid.html): Recover Mermaid source from diagram screenshots.
+- [Architecture Diagram to Mermaid](https://www.picstruct.com/pages/architecture-diagram-to-mermaid.html): Convert system design images into Mermaid drafts.
+- [Whiteboard to Mermaid](https://www.picstruct.com/pages/whiteboard-to-mermaid.html): Convert workshop and whiteboard captures into Mermaid.
+- [Chart Image to CSV](https://www.picstruct.com/pages/chart-to-csv.html): Extract visible chart data into spreadsheet-friendly rows.
+- [Diagram to Markdown](https://www.picstruct.com/pages/diagram-to-markdown.html): Turn diagrams into summaries, Mermaid blocks, and documentation notes.
+- [Image to JSON](https://www.picstruct.com/pages/image-to-json.html): Convert visual structure into machine-readable JSON.
+- [Visual Structure Extraction guide](https://www.picstruct.com/pages/visual-structure-extraction.html): Explains the category, use cases, outputs, and limitations.
+
+## Policies
+
+- [Privacy](https://www.picstruct.com/privacy.html): How visual files and requests are handled.
+- [Terms](https://www.picstruct.com/terms.html): Terms for using PicStruct.
+- [Contact](https://www.picstruct.com/contact.html): Support, billing, partnerships, and feedback.
+- [Sitemap](https://www.picstruct.com/sitemap.xml): Search-engine sitemap.
