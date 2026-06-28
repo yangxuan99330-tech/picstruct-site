@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chart Image to JSON - PicStruct</title>
+    <meta name="description" content="Convert chart screenshots and chart images into structured JSON with labels, axes, series, estimated values, and review notes.">
+    <link rel="canonical" href="https://www.picstruct.com/pages/chart-image-to-json.html">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../config.js"></script>
+    <script src="../analytics.js" defer></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can PicStruct convert a chart image to JSON?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. PicStruct can describe chart structure and return JSON-style output with chart type, titles, axes, categories, series, visible values, estimated values, and warnings."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are chart values exact?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Only clearly labeled values should be treated as exact. Values inferred from bar height, line position, or plot area should be reviewed as estimates."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "When should I use JSON instead of CSV?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Use JSON when you need metadata, nested series, chart warnings, or a format that can be consumed by another application."
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../index.html" aria-label="PicStruct home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="5" y="5" width="9" height="9" rx="2"></rect><rect x="18" y="5" width="9" height="9" rx="2"></rect><rect x="11" y="19" width="10" height="8" rx="2"></rect><path d="M14 10h4M23 14v5M16 19v-5"></path></svg></span>
+        <span>PicStruct</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="../index.html#workspace">Tool</a>
+        <a href="../index.html#formats">Formats</a>
+        <a href="../index.html#pricing">Pricing</a>
+      </nav>
+      <a class="header-action" href="../index.html#workspace">Open app</a>
+    </header>
+
+    <main>
+      <section class="workspace-shell">
+        <div class="workspace-heading">
+          <div>
+            <p class="eyebrow">Chart image to JSON</p>
+            <h1>Extract chart structure into JSON.</h1>
+          </div>
+          <div class="status-strip"><span class="status-dot" aria-hidden="true"></span><span>Structured chart output</span></div>
+        </div>
+
+        <div class="format-card">
+          <h2>From chart screenshot to structured data</h2>
+          <p>PicStruct can read a chart image and produce a structured draft with chart type, title, axis labels, legend names, categories, series, visible values, estimated values, and warnings about uncertainty.</p>
+          <a class="header-action" href="../index.html#workspace">Convert a chart</a>
+        </div>
+
+        <div class="format-grid" style="margin-top:14px">
+          <article class="format-card">
+            <h3>Metadata</h3>
+            <p>Capture the chart title, chart type, units, axis labels, and legend context.</p>
+          </article>
+          <article class="format-card">
+            <h3>Series</h3>
+            <p>Group visible categories and series into a structure that can be reviewed or transformed.</p>
+          </article>
+          <article class="format-card">
+            <h3>Warnings</h3>
+            <p>Keep uncertainty notes when values are estimated from pixels instead of printed labels.</p>
+          </article>
+        </div>
+
+        <section class="plain-page" style="padding-bottom:0">
+          <h2>Use JSON when you need more than rows</h2>
+          <p>CSV is usually best for quick spreadsheet work. JSON is better when you want to preserve chart metadata, nested values, and review notes for later processing.</p>
+
+          <h2>Related pages</h2>
+          <ul>
+            <li><a href="chart-to-csv.html">Chart Image to CSV</a></li>
+            <li><a href="image-to-json.html">Image to JSON</a></li>
+            <li><a href="image-to-structured-data.html">Image to Structured Data</a></li>
+            <li><a href="../index.html#workspace">Open PicStruct</a></li>
+          </ul>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
