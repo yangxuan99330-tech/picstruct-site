@@ -32,6 +32,10 @@ Important limitation: PicStruct creates editable drafts from visible image conte
 - [Diagram to Markdown](https://www.picstruct.com/pages/diagram-to-markdown.html): Turn diagrams into summaries, Mermaid blocks, and documentation notes.
 - [Image to JSON](https://www.picstruct.com/pages/image-to-json.html): Convert visual structure into machine-readable JSON.
 - [Visual Structure Extraction guide](https://www.picstruct.com/pages/visual-structure-extraction.html): Explains the category, use cases, outputs, and limitations.
+- [AI Diagram Parser](https://www.picstruct.com/pages/ai-diagram-parser.html): Parse nodes, arrows, labels, and relationships from diagrams.
+- [Image to Structured Data](https://www.picstruct.com/pages/image-to-structured-data.html): Convert visible image structure into Mermaid, CSV, Markdown, or JSON.
+- [Chart Image to JSON](https://www.picstruct.com/pages/chart-image-to-json.html): Extract chart metadata, series, values, and warnings into JSON-style output.
+- [Process Map to Mermaid](https://www.picstruct.com/pages/process-map-to-mermaid.html): Convert process map screenshots into Mermaid flowcharts.
 
 ## Policies
 
