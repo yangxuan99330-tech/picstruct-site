@@ -47,6 +47,9 @@ Important limitation: PicStruct creates editable drafts from visible image conte
 - [What Is PicStruct?](https://www.picstruct.com/pages/what-is-picstruct.html): Canonical brand and product facts for PicStruct.
 - [Diagram Conversion FAQ](https://www.picstruct.com/pages/diagram-conversion-faq.html): Direct answers about image-to-diagram, chart extraction, and output choices.
 - [Visual Conversion Examples](https://www.picstruct.com/pages/visual-conversion-examples.html): Example input and output families for diagram, chart, architecture, and whiteboard conversion.
+- [How to Convert an Image to Mermaid](https://www.picstruct.com/pages/how-to-convert-image-to-mermaid.html): Step-by-step workflow for turning a diagram image into Mermaid code.
+- [Choose Output Format](https://www.picstruct.com/pages/choose-output-format.html): Explains when to use Mermaid, CSV, Markdown, or JSON.
+- [All Pages](https://www.picstruct.com/pages.html): HTML index of PicStruct tools, guides, and reference pages.
 
 ## Policies
 

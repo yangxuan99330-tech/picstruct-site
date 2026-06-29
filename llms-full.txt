@@ -88,6 +88,9 @@ Common sources of uncertainty:
 - What Is PicStruct: https://www.picstruct.com/pages/what-is-picstruct.html
 - Diagram Conversion FAQ: https://www.picstruct.com/pages/diagram-conversion-faq.html
 - Visual Conversion Examples: https://www.picstruct.com/pages/visual-conversion-examples.html
+- How to Convert an Image to Mermaid: https://www.picstruct.com/pages/how-to-convert-image-to-mermaid.html
+- Choose Output Format: https://www.picstruct.com/pages/choose-output-format.html
+- All Pages: https://www.picstruct.com/pages.html
 
 ## Direct Answers
 
