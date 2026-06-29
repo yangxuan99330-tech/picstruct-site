@@ -12,6 +12,14 @@ Primary outputs:
 - Markdown summaries and documentation notes
 - Structured JSON
 
+Entity facts:
+- Name: PicStruct
+- Canonical domain: https://www.picstruct.com/
+- Product type: AI visual structure conversion tool
+- Core task: convert visible structure in images into editable text outputs
+- Best inputs: readable diagrams, flowcharts, architecture screenshots, chart images, whiteboard captures, and process maps
+- Review requirement: generated outputs should be checked before publication or import
+
 Primary users:
 - Technical writers and software teams rebuilding diagrams for docs
 - Product and operations teams turning process screenshots into editable flows
@@ -36,6 +44,9 @@ Important limitation: PicStruct creates editable drafts from visible image conte
 - [Image to Structured Data](https://www.picstruct.com/pages/image-to-structured-data.html): Convert visible image structure into Mermaid, CSV, Markdown, or JSON.
 - [Chart Image to JSON](https://www.picstruct.com/pages/chart-image-to-json.html): Extract chart metadata, series, values, and warnings into JSON-style output.
 - [Process Map to Mermaid](https://www.picstruct.com/pages/process-map-to-mermaid.html): Convert process map screenshots into Mermaid flowcharts.
+- [What Is PicStruct?](https://www.picstruct.com/pages/what-is-picstruct.html): Canonical brand and product facts for PicStruct.
+- [Diagram Conversion FAQ](https://www.picstruct.com/pages/diagram-conversion-faq.html): Direct answers about image-to-diagram, chart extraction, and output choices.
+- [Visual Conversion Examples](https://www.picstruct.com/pages/visual-conversion-examples.html): Example input and output families for diagram, chart, architecture, and whiteboard conversion.
 
 ## Policies
 
@@ -43,3 +54,4 @@ Important limitation: PicStruct creates editable drafts from visible image conte
 - [Terms](https://www.picstruct.com/terms.html): Terms for using PicStruct.
 - [Contact](https://www.picstruct.com/contact.html): Support, billing, partnerships, and feedback.
 - [Sitemap](https://www.picstruct.com/sitemap.xml): Search-engine sitemap.
+- [Full AI reference](https://www.picstruct.com/llms-full.txt): Expanded PicStruct facts, capabilities, limitations, and page map.
