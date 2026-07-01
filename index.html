@@ -3,53 +3,127 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PicStruct - Convert charts and diagrams into editable data</title>
-    <meta name="description" content="PicStruct turns flowcharts, architecture diagrams, screenshots, and chart images into Mermaid, CSV, JSON, and clean documentation-ready text.">
+    <title>PicStruct - Image to Mermaid, Chart to CSV, and Visual Data Parser</title>
+    <meta name="description" content="Convert diagram images into Mermaid, chart screenshots into CSV, and visual files into Markdown or JSON with PicStruct. Free image-to-structure tool.">
     <meta name="theme-color" content="#f7f4ee">
     <link rel="canonical" href="https://www.picstruct.com/">
-    <meta property="og:title" content="PicStruct - Visual files to editable structure">
-    <meta property="og:description" content="Convert chart and diagram images into Mermaid, CSV, Markdown, and JSON.">
+    <meta property="og:title" content="PicStruct - Image to Mermaid and Chart to CSV">
+    <meta property="og:description" content="Convert diagrams, flowcharts, chart images, and whiteboard captures into Mermaid, CSV, Markdown, and JSON.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.picstruct.com/">
+    <meta property="og:site_name" content="PicStruct">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="PicStruct - Image to Mermaid and Chart to CSV">
+    <meta name="twitter:description" content="Turn visual files into editable Mermaid, CSV, Markdown, and JSON drafts.">
     <link rel="stylesheet" href="styles.css">
     <script src="config.js"></script>
     <script src="analytics.js" defer></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "PicStruct",
-        "url": "https://www.picstruct.com/",
-        "applicationCategory": "ProductivityApplication",
-        "operatingSystem": "Web",
-        "description": "PicStruct converts chart and diagram images into editable Mermaid, CSV, Markdown, and JSON.",
-        "isAccessibleForFree": true,
-        "keywords": "image to Mermaid, diagram parser, chart image to CSV, image to JSON, visual structure extraction",
-        "featureList": [
-          "Convert diagram images into Mermaid",
-          "Convert chart images into CSV",
-          "Convert visual structure into JSON",
-          "Generate Markdown summaries from diagrams",
-          "Review extracted labels, values, and relationships"
-        ],
-        "offers": [
+        "@graph": [
           {
-            "@type": "Offer",
-            "name": "Free",
-            "price": "0",
-            "priceCurrency": "USD"
+            "@type": "Organization",
+            "@id": "https://www.picstruct.com/#organization",
+            "name": "PicStruct",
+            "url": "https://www.picstruct.com/"
           },
           {
-            "@type": "Offer",
-            "name": "Starter",
-            "price": "7",
-            "priceCurrency": "USD"
+            "@type": "WebSite",
+            "@id": "https://www.picstruct.com/#website",
+            "name": "PicStruct",
+            "url": "https://www.picstruct.com/",
+            "description": "PicStruct converts diagram, chart, and screenshot images into editable Mermaid, CSV, Markdown, and JSON.",
+            "publisher": {
+              "@id": "https://www.picstruct.com/#organization"
+            }
           },
           {
-            "@type": "Offer",
-            "name": "Pro",
-            "price": "15",
-            "priceCurrency": "USD"
+            "@type": "WebApplication",
+            "@id": "https://www.picstruct.com/#app",
+            "name": "PicStruct",
+            "url": "https://www.picstruct.com/",
+            "applicationCategory": "ProductivityApplication",
+            "operatingSystem": "Web",
+            "description": "PicStruct converts chart and diagram images into editable Mermaid, CSV, Markdown, and JSON.",
+            "isAccessibleForFree": true,
+            "keywords": "image to Mermaid, diagram parser, chart image to CSV, image to JSON, visual structure extraction",
+            "featureList": [
+              "Convert diagram images into Mermaid",
+              "Convert chart images into CSV",
+              "Convert visual structure into JSON",
+              "Generate Markdown summaries from diagrams",
+              "Review extracted labels, values, and relationships"
+            ],
+            "publisher": {
+              "@id": "https://www.picstruct.com/#organization"
+            },
+            "offers": [
+              {
+                "@type": "Offer",
+                "name": "Free",
+                "price": "0",
+                "priceCurrency": "USD"
+              },
+              {
+                "@type": "Offer",
+                "name": "Starter",
+                "price": "7",
+                "priceCurrency": "USD"
+              },
+              {
+                "@type": "Offer",
+                "name": "Pro",
+                "price": "15",
+                "priceCurrency": "USD"
+              }
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://www.picstruct.com/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is PicStruct?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "PicStruct is a web tool that converts diagram, flowchart, chart, screenshot, and whiteboard images into editable Mermaid, CSV, Markdown, and JSON drafts."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can PicStruct convert an image to Mermaid?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. PicStruct can convert readable diagram, flowchart, process map, architecture, and whiteboard images into Mermaid drafts."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can PicStruct extract data from chart images?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. PicStruct can extract visible chart labels, categories, legends, series, and values into CSV or JSON drafts."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which output format should I choose?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Use Mermaid for diagrams, CSV for chart data, Markdown for summaries and notes, and JSON for structured data or automation."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is PicStruct output always exact?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. PicStruct creates editable drafts from visible image content, so users should review labels, arrows, chart values, and inferred relationships before publishing."
+                }
+              }
+            ]
           }
         ]
       }
@@ -325,6 +399,34 @@
         </div>
       </section>
 
+      <section class="usecase-band" aria-labelledby="answer-title">
+        <div class="section-inner">
+          <div class="section-copy">
+            <p class="eyebrow">Answer engine summary</p>
+            <h2 id="answer-title">PicStruct converts visual files into editable text outputs.</h2>
+            <p>Use PicStruct when a useful diagram, flowchart, chart, screenshot, or whiteboard capture only exists as an image and needs to become editable source.</p>
+          </div>
+          <div class="usecase-grid">
+            <article class="usecase-card">
+              <h3>Image to Mermaid</h3>
+              <p>Convert diagrams, process maps, architecture screenshots, and whiteboards into Mermaid flowchart drafts.</p>
+            </article>
+            <article class="usecase-card">
+              <h3>Chart image to CSV</h3>
+              <p>Extract visible chart titles, axes, legends, categories, series, and values into spreadsheet-friendly rows.</p>
+            </article>
+            <article class="usecase-card">
+              <h3>Diagram to Markdown</h3>
+              <p>Create summaries, alt text drafts, implementation notes, and review warnings from visual structure.</p>
+            </article>
+            <article class="usecase-card">
+              <h3>Image to JSON</h3>
+              <p>Turn visible nodes, labels, relationships, chart metadata, and uncertain fields into structured JSON drafts.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section class="seo-band" aria-labelledby="seo-title">
         <div class="section-inner seo-layout">
           <div>
@@ -459,6 +561,22 @@
           </div>
           <div class="faq-list">
             <details open>
+              <summary>What is PicStruct?</summary>
+              <p>PicStruct is a web tool that converts diagram, flowchart, chart, screenshot, and whiteboard images into editable Mermaid, CSV, Markdown, and JSON drafts.</p>
+            </details>
+            <details open>
+              <summary>Can PicStruct convert an image to Mermaid?</summary>
+              <p>Yes. PicStruct can convert readable diagram, flowchart, process map, architecture, and whiteboard images into Mermaid drafts. Review arrows, labels, and decision branches before using the result in documentation.</p>
+            </details>
+            <details>
+              <summary>Can PicStruct extract data from chart images?</summary>
+              <p>Yes. PicStruct can extract visible chart labels, categories, legends, series, and values into CSV or JSON drafts. Values without printed labels should be treated as estimates.</p>
+            </details>
+            <details>
+              <summary>Which output format should I choose?</summary>
+              <p>Use Mermaid for diagrams, CSV for chart data, Markdown for summaries and notes, and JSON for structured data or automation.</p>
+            </details>
+            <details>
               <summary>Does PicStruct store my images?</summary>
               <p>The current site sends the selected image or image URL to the serverless parser so the AI model can process it. Do not upload sensitive files yet. A stronger retention policy and account controls should be added before enterprise use.</p>
             </details>

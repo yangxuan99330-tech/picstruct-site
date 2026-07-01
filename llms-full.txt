@@ -2,11 +2,11 @@
 
 Canonical site: https://www.picstruct.com/
 
-PicStruct is a web-based AI visual structure conversion tool. It converts readable visual files into editable text outputs.
+PicStruct is a web-based AI visual structure conversion tool. It converts readable visual files into editable text outputs and is positioned around image to Mermaid, chart image to CSV, diagram to Markdown, and image to JSON workflows.
 
 ## One-Sentence Summary
 
-PicStruct turns diagram, flowchart, architecture, whiteboard, process map, and chart images into editable Mermaid, CSV, Markdown, and JSON drafts.
+PicStruct turns diagram, flowchart, architecture, whiteboard, process map, screenshot, and chart images into editable Mermaid, CSV, Markdown, and JSON drafts.
 
 ## Product Category
 
@@ -102,6 +102,9 @@ Yes. PicStruct can convert readable diagram, flowchart, process map, architectur
 
 Can PicStruct extract data from chart images?
 Yes. PicStruct can extract visible chart structure into CSV or JSON, including labels, categories, legends, and visible or estimated values.
+
+Which output format should someone choose?
+Use Mermaid for diagrams, CSV for chart data, Markdown for summaries and notes, and JSON for structured data or automation.
 
 Is PicStruct output always exact?
 No. PicStruct output should be reviewed because image quality, dense diagrams, and unlabeled chart values can create uncertainty.

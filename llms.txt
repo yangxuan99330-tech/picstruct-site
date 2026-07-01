@@ -1,10 +1,10 @@
 # PicStruct
 
-> PicStruct is a web tool that converts diagram, flowchart, architecture, whiteboard, and chart images into editable Mermaid, CSV, Markdown, and JSON.
+> PicStruct is a web tool that converts diagram, flowchart, architecture, whiteboard, screenshot, and chart images into editable Mermaid, CSV, Markdown, and JSON.
 
 Canonical site: <https://www.picstruct.com/>
 
-PicStruct is useful when a visual file contains structure that should become editable text. It focuses on visible information: diagram nodes, arrows, labels, chart axes, legend names, categories, estimated chart values, summaries, and review notes.
+PicStruct is useful when a visual file contains structure that should become editable text. It focuses on visible information: diagram nodes, arrows, labels, chart axes, legend names, categories, estimated chart values, summaries, review notes, and machine-readable structure.
 
 Primary outputs:
 - Mermaid diagram code
@@ -19,6 +19,8 @@ Entity facts:
 - Core task: convert visible structure in images into editable text outputs
 - Best inputs: readable diagrams, flowcharts, architecture screenshots, chart images, whiteboard captures, and process maps
 - Review requirement: generated outputs should be checked before publication or import
+- Homepage title focus: image to Mermaid, chart to CSV, and visual data parsing
+- Primary homepage answer: PicStruct converts visual files into editable text outputs
 
 Primary users:
 - Technical writers and software teams rebuilding diagrams for docs
